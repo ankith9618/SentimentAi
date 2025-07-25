@@ -1,0 +1,53 @@
+.statsSection {
+  background: var(--color-bg-light);
+  /* Slight overlay or background dots can be added if desired */
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.statCard {
+  text-align: center;
+  flex: 1;
+}
+
+.value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 0.25rem;
+}
+
+.label {
+  font-size: 1rem;
+  color: var(--color-text-light);
+  margin-bottom: 0.75rem;
+}
+
+.progressBarBackground {
+  width: 100%;
+  height: 0.5rem;
+  background: var(--color-border);
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+
+.progressBarFill {
+  height: 100%;
+  border-radius: 0.25rem;
+  transition: width 0.5s ease;
+}

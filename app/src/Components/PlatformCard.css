@@ -1,0 +1,100 @@
+.platform-card-sec {
+  background: #1a1a1a;
+  border-radius: 14px;
+  padding: 20px;
+  color: #ffffff;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: 0.3s;
+}
+
+.platform-card-sec.disabled {
+  background: #111418;
+}
+
+.platform-card-sec .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+}
+
+.platform-card-sec .left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-align: left;
+}
+
+.platform-card-sec .platform-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.platform-card-sec .platform-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.platform-card-sec .platform-title {
+  font-size: 0.85rem;
+  color: #bbbbbbb1;
+}
+
+.platform-card-sec .status-badge {
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+.platform-card-sec .status-badge.live {
+  background-color: #b91c1c;
+  color: #fff;
+}
+
+.platform-card-sec .status-badge.soon {
+  background-color: #2f2f2f;
+  color: #aaa;
+}
+
+.platform-card-sec .platform-desc {
+  font-size: 0.9rem;
+  color: #ccccccbb;
+  text-align: left;
+}
+
+.platform-card-sec .start-btn {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.platform-card-sec .start-btn:disabled {
+  background-color: #2d2d2d;
+  color: #f6f6f6bd;
+  cursor: not-allowed;
+}
+
+.platform-card-sec .start-btn.red {
+  background-color: #ef4444;
+  color: white;
+}
+
+.platform-card-sec .start-btn.red:hover {
+  background-color: #dc2626;
+}
+
+.platform-card-sec .start-btn.blue {
+  background-color: #5289e3c9;
+}
+
+.platform-card-sec .start-btn.gradient {
+  background: linear-gradient(to right, #f59e0b, #ec4899);
+  color: white;
+}

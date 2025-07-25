@@ -1,0 +1,7 @@
+.video-preview{
+    display: flex;
+    justify-content: center;
+    border-radius: 7px;
+    overflow: hidden;
+    opacity: 0.8;
+}

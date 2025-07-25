@@ -1,0 +1,31 @@
+.dashboard-header{
+  width: max-content;
+  margin: auto;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.dashboard-header h1 {
+  font-size: 2.5rem;
+  color: #a78bfa;
+  width: max-content;
+}
+
+.dashboard-header p {
+  font-size: 1.1rem;
+  color: #ccc;
+  width: max-content;
+}
+
+@media (max-width: 768px) {
+  .dashboard-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .dashboard-header p {
+    font-size: 1rem;
+  }
+}

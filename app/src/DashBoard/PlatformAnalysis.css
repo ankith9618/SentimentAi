@@ -1,0 +1,151 @@
+.dash-platform-section {
+  margin-top: 32px;
+  padding: 20px;
+}
+
+.dash-platform-section h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #ffffff;
+}
+
+.dash-platform-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  padding: 0 10px;
+}
+
+.dash-platform-card {
+  background: linear-gradient(145deg, #212020, #523f5e);
+  border: 1px solid #2a2a2a;
+  padding: 20px;
+  border-radius: 16px;
+  color: #eaeaea;
+  transition: transform 0.2s ease;
+
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .dash-platform-card {
+    max-width: 90%;       
+  }
+}
+
+
+.dash-platform-card:hover {
+  transform: translateY(-4px);
+}
+
+.dash-platform-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.dash-platform-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dash-platform-name {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.platform-icon {
+  font-size: 20px;
+}
+
+.youtube {
+  color: #ff0000;
+}
+.twitter {
+  color: #1da1f2;
+}
+.instagram {
+  color: #e1306c;
+}
+.facebook {
+  color: #1877f2;
+}
+
+.dash-growth-pill {
+  background-color: #a259ff;
+  color: white;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.dash-platform-stat h3,
+.dash-platform-stat h4 {
+  font-size: 22px;
+  margin: 0;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.platform-stat p {
+  font-size: 13px;
+  color: #b0b0b0;
+  margin-bottom: 12px;
+}
+
+.sentiment-header {
+  font-weight: 600;
+  margin-top: 10px;
+  margin-bottom: 6px;
+  color: white;
+  font-size: 14px;
+}
+
+.sentiment-row {
+  display: flex;
+  gap: 10px;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.dash-platform-card .positive {
+  color: #23c128;
+}
+.dash-platform-card .negative {
+  color: #dc3f34f6;
+}
+.dash-platform-card .neutral {
+  color: #c57f46;
+}
+
+.sentiment-bar {
+  height: 8px;
+  width: 100%;
+  background-color: #333;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+}
+
+.bar {
+  height: 100%;
+  border-radius: 4px;
+}
+
+.positive-bar {
+  background-color: #4caf50;
+}
+.negative-bar {
+  background-color: #f44336c1;
+}
+.neutral-bar {
+  background-color: #cb9267;
+}

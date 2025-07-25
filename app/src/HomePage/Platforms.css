@@ -1,0 +1,111 @@
+.platforms-section {
+  padding: 4rem 1rem;
+  background: #f9fafb;
+}
+
+.platforms-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.platforms-header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.platforms-header span {
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.platforms-header p {
+  font-size: 1rem;
+  color: #6b7280;
+}
+
+.platforms-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.platform-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  width: 220px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  background: white;
+}
+
+.platform-card:hover {
+  background: var(--hover-bg);
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+}
+
+.icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  color: #fff;
+  background-size: cover;
+  background-position: center;
+}
+
+.platform-card h3 {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.platform-card .badge {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  display: inline-block;
+  background-color: #e5e7eb;
+  color: #374151;
+  margin-top: 0.5rem;
+}
+
+.platform-card.enabled .badge {
+  background: #d1fae5;
+  color: #059669;
+}
+
+.platform-card.disabled {
+  opacity: 0.7;
+}
+
+
+.icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  color: white;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.platform-card:hover .icon {
+  transform: scale(1.1);
+  box-shadow: 0 0 18px var(--hover-ring, rgba(0, 0, 0, 0.2));
+}
