@@ -1,4 +1,4 @@
-const API_KEY = 'AIzaSyCT5yOwQt1F1901kZ8v3GN6Z82iOZq16S8';
+const API_KEY = '';
 
 const BASE_URL = 'https://youtube.googleapis.com/youtube/v3';
 
