@@ -2,6 +2,7 @@
 
 .loader-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;      /* full height */
@@ -11,6 +12,7 @@
   left: 0;
   background-color: rgba(255, 255, 255, 0.7); /* semi-transparent */
   z-index: 9999;      /* stay on top */
+
 }
 
 .spinner {
@@ -22,6 +24,11 @@
   animation: spin 1s linear infinite;
 }
 
+
+.message{
+  color: rgb(38, 0, 255);
+  font-weight: bold;
+}
 /* Animation keyframes */
 @keyframes spin {
   0% {

@@ -1,42 +1,71 @@
 import React, { useState, useEffect } from "react";
 import "./AnalyzeComments.css";
 import { useNavigate, useLocation } from "react-router-dom";
-import { getComments, formatDateRelative } from '../Utilities/Utilityfunctions';
+import { getComments } from '../Utilities/Utilityfunctions';
+import { useAuth0 } from "@auth0/auth0-react";
+import Loader from "../Components/Loader.jsx";
+import BarGraph from "../Components/BarGraph.jsx";
 
+const TABS = ["positive", "neutral", "negative", "question", "all"];
 
 const AnalyzeComments = () => {
+    const { getAccessTokenSilently } = useAuth0();
     const navigate = useNavigate();
-    const [activeTab, setActiveTab] = useState("all");
-    const [fetchedComments, setFetchedComments] = useState([]);
-
     const location = useLocation();
+
+    const [activeTab, setActiveTab] = useState("all");
+    const [isLoading, setIsLoading] = useState(true);
+    const [categorizedComments, setCategorizedComments] = useState({
+        all: [],
+        positive: [],
+        negative: [],
+        neutral: [],
+        question: [],
+    });
+
     const videoParams = new URLSearchParams(location.search);
     const videoId = videoParams.get("videoId") || null;
     const filter = videoParams.get("filter") || "Newest";
     const limit = parseInt(videoParams.get("limit") || "100");
 
-    const fetchAllComments = async (videoId) => {
-        const comments = await getComments(videoId, filter, limit);
-        comments.forEach((item) => {
-            item.lastUpdated = formatDateRelative(item.lastUpdated);
-            item.sentiment = "all";
-        });
-        setFetchedComments((fetchedComments) => comments);
+    const fetchAndCategorizeComments = async (videoId) => {
+        setIsLoading(true);
+        try {
+            const token = await getAccessTokenSilently();
+            const comments = await getComments(videoId, filter, limit, token);
+
+            const categories = {
+                all: [],
+                positive: [],
+                negative: [],
+                neutral: [],
+                question: [],
+            };
+
+            comments.forEach(comment => {
+                categories.all.push(comment);
+                if (comment.tag && categories[comment.tag]) {
+                    categories[comment.tag].push(comment);
+                }
+            });
+
+            setCategorizedComments(categories);
+        } catch (error) {
+            console.error("Failed to fetch comments:", error);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     useEffect(() => {
         if (!videoId) {
             navigate("/youtube");
         } else {
-            fetchAllComments(videoId);
+            fetchAndCategorizeComments(videoId);
         }
     }, [videoId]);
 
-
-    const commentsToDisplay = activeTab === "all"
-        ? fetchedComments
-        : fetchedComments.filter(comment => comment.sentiment === activeTab);
-
+    const commentsToDisplay = categorizedComments[activeTab] || [];
 
     return (
         <div className="sentiment-container">
@@ -52,46 +81,56 @@ const AnalyzeComments = () => {
                         style={{ border: "none" }}
                     ></iframe>
                 </div>
+                <div style={{ width: '450px', margin: '0 auto' }}>
+                    <h2>Sentiment Overview</h2>
+                    <BarGraph data={[
+                        { positive: categorizedComments.positive.length },
+                        { negative: categorizedComments.negative.length },
+                        { neutral: categorizedComments.neutral.length },
+                        { questions: categorizedComments.question.length },
+                        { all: categorizedComments.all.length }
+                    ]} />
+                </div>
+            </div>
 
+            <div className="right-panel">
                 <div className="tab-buttons">
-                    {["positive", "neutral", "negative", "all"].map((type) => (
+                    {TABS.map((type) => (
                         <button
                             key={type}
                             className={`tab-button ${activeTab === type ? "active" : ""}`}
                             onClick={() => setActiveTab(type)}
                         >
-                            {type.charAt(0).toUpperCase() + type.slice(1)} Comments
+                            {type.charAt(0).toUpperCase() + type.slice(1)}
                         </button>
                     ))}
                 </div>
-            </div>
-
-            <div className="right-panel">
-                <h3>{activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} Comments</h3>
+                <h3 className={`${activeTab}`}>{activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} Comments</h3>
                 <div className={`comments-count ${activeTab}`}>{commentsToDisplay.length}</div>
-                <ul className="comment-list">
-                    {commentsToDisplay.length === 0 ? (
-                        <li>No comments to display</li>
-                    ) : (
-                        commentsToDisplay.map((comment, index) => {
-                            if (!comment || typeof comment !== "object") {
-                                console.warn("Invalid comment at index", index, comment);
-                                return <li key={index}>[Invalid comment]</li>;
-                            }
 
-                            return (
+                {isLoading ? (
+                    <div className="comments-loader">
+                        <Loader message="Please wait while we load the comments..." />
+                    </div>
+                ) : (
+                    <ul className="comment-list">
+                        {commentsToDisplay.length === 0 ? (
+                            <li>No comments to display</li>
+                        ) : (
+                            commentsToDisplay.map((comment, index) => (
                                 <li key={index} className="comment-item">
                                     <div className="comment-content">
-                                        <span className="comment-author">{comment.author|| 'N/A'}</span>
-                                        <div className="comment-text">{comment.text ||'N/A'}</div>
+                                        <span className="comment-author">{comment.author || "N/A"}</span>
+                                        <div className="comment-text">{comment.text || "N/A"}</div>
                                     </div>
-                                    <div className="comment-time">{comment?.lastUpdated || comment.publishedAt}</div>
+                                    <div className="comment-time">
+                                        {comment.lastUpdated || comment.publishedAt || "N/A"}
+                                    </div>
                                 </li>
-                            );
-                        })
-                    )}
-                </ul>
-
+                            ))
+                        )}
+                    </ul>
+                )}
             </div>
         </div>
     );

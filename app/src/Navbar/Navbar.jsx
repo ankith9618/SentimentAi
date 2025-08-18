@@ -4,12 +4,33 @@ import { FiMenu, FiX } from 'react-icons/fi';
 import { useAuth0 } from "@auth0/auth0-react";
 import { NavLink } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';
-
+import { useEffect } from 'react';
 
 export default function Navbar() {
-  const { loginWithRedirect, logout, isAuthenticated, isLoading} = useAuth0();
+
+  
+  const { loginWithRedirect, logout, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  const callApi = async () => {
+    const token = await getAccessTokenSilently();
+    const res = await fetch("http://localhost:5000/protected", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = await res.json();
+  };
+
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      callApi();
+    }
+  }, [isAuthenticated]);
+
 
   return (
     <header className="nav-root">
@@ -53,6 +74,6 @@ export default function Navbar() {
           <button className="btn get-started">Get Started</button>
         </div>
       </ul>
-    </header>
+    </header >
   );
 }
