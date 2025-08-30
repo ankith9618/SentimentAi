@@ -15,7 +15,7 @@ const CommentsAnalyser = () => {
     const [darkMode, setDarkMode] = useState(true);
 
     const handleAnalyze = () => {
-         navigate(`/platform/youtube/analyze?videoId=${videoId}&filter=${filter}&limit=${limit}`);
+        navigate(`/platform/youtube/analyze?videoId=${videoId}&filter=${filter}&limit=${limit}`);
     };
 
     const extractVideoId = urlOrId => {
@@ -68,7 +68,7 @@ const CommentsAnalyser = () => {
                     disabled={!videoId || !limit}
                     onClick={handleAnalyze}
                 >
-                        Analyze Comments
+                    Analyze Comments
                 </button>
             </div>
 

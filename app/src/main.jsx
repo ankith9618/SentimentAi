@@ -11,10 +11,14 @@ createRoot(document.getElementById('root')).render(
     clientId="CKKw6YxffjqaouMA3iWnWrnBheY4qAqa"
     authorizationParams={{
       redirect_uri: window.location.origin,
-      audience:"https://dev-8amrfofxihyx0qx2.us.auth0.com/api/v2/"
+      audience: "https://dev-8amrfofxihyx0qx2.us.auth0.com/api/v2/"
     }}
     onRedirectCallback={(appState) => {
-      window.history.replaceState({}, document.title, appState?.returnTo || "/");
+      window.history.replaceState(
+        {},
+        document.title,
+        appState?.returnTo || window.location.pathname
+      );
     }}
   >
     <title>Sentiment AI</title>
