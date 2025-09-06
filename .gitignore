@@ -1,4 +1,8 @@
-Backend/
 credentials.json
 token.json
 .env
+app/.firebase/
+app/.firebaserc
+app/firebase.json
+.github/
+node_modules/

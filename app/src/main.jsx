@@ -7,13 +7,14 @@ import { Auth0Provider } from '@auth0/auth0-react';
 
 createRoot(document.getElementById('root')).render(
   <Auth0Provider
-    domain="dev-8amrfofxihyx0qx2.us.auth0.com"
-    clientId="CKKw6YxffjqaouMA3iWnWrnBheY4qAqa"
+    domain="dev-tzskhzseii6boohd.us.auth0.com"
+    clientId="HF9RXpEOtL80RNdrDflkatqkojz35QMK"
     authorizationParams={{
-      redirect_uri: window.location.origin,
-      audience: "https://dev-8amrfofxihyx0qx2.us.auth0.com/api/v2/"
+      redirect_uri: window.location.origin  ,
+      audience: "https://sentiment-analysis-api"
     }}
     onRedirectCallback={(appState) => {
+      
       window.history.replaceState(
         {},
         document.title,
