@@ -15,7 +15,7 @@ export default function Navbar() {
 
   const callApi = async () => {
     const token = await getAccessTokenSilently();
-    const res = await fetch("http://localhost:5000/protected", {
+    const res = await fetch("https://sentimentai-6spl.onrender.com/protected", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

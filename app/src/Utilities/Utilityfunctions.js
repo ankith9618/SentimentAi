@@ -9,7 +9,7 @@ export function formatDateRelative(date) {
 
 
 export async function getComments(videoId, filter, limit,token) {
-    const url = "http://localhost:5000/youtube/comments/response";
+    const url = "https://sentimentai-6spl.onrender.com/youtube/comments/response";
 
     try {
         const res = await fetch(url, {

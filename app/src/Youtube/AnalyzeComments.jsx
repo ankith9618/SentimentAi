@@ -102,7 +102,7 @@ const AnalyzeComments = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/youtube/reply", {
+      const res = await fetch("https://sentimentai-6spl.onrender.com/youtube/reply", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
