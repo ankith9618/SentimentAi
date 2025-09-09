@@ -108,7 +108,7 @@ app.get("/auth/callback", async (req, res) => {
     expires_at: Date.now() + data.expires_in * 1000
   });
 
-  console.log("Stored Tokens for", userEmail, ":", userTokens.get(userEmail));
+  // console.log("Stored Tokens for", userEmail, ":", userTokens.get(userEmail));
 
   res.redirect(`https://sentimentai-6281.web.app/?auth=success&email=${encodeURIComponent(userEmail)}`);
 
@@ -143,7 +143,7 @@ async function getValidAccessToken(userEmail) {
     expires_at: Date.now() + newData.expires_in * 1000
   });
 
-  console.log("🔄 Refreshed Access Token for", userEmail, ":", newData.access_token);
+  // console.log("🔄 Refreshed Access Token for", userEmail, ":", newData.access_token);
   return newData.access_token;
 }
 
@@ -254,7 +254,6 @@ app.post("/youtube/comments/response", async (req, res) => {
 app.post("/youtube/reply", async (req, res) => {
   try {
     const { parentId, text, userEmail, returnTo } = req.body;
-    console.log(req.body);
     if (!userEmail) return res.status(400).send("User email required");
 
     const tokens = userTokens.get(userEmail);
