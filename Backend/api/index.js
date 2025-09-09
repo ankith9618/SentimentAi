@@ -154,7 +154,7 @@ async function getValidAccessToken(userEmail) {
  * Get comments
  */
 async function getComments(videoId, filter, limit) {
-  const MAX_COMMENTS = 200;
+  const MAX_COMMENTS = limit;
   const allComments = [];
   let pageToken = "";
 
